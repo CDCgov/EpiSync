@@ -1,0 +1,78 @@
+#
+# Feed Summary
+#
+
+# version of the epicast that the feed conforms to
+epicastVersion: 0.2
+
+# The reporter and topic uniquely define a feed.
+#
+# The reporter is the organization, system or facility reporting the feed.
+# For cases, this will likely be a name of a public health agency. Reporter names
+# need to be unique. It is common to use the DNS address of the reporter.
+#
+reporterId: {{ reporterId }}
+
+# The topic of the feed. For cases, this will be something like 'covid_19_cases'.
+# Topics are registered with the EpiCast central.
+#
+topicId: {{ topicId }}
+
+# The source URI for this feed. Points to the snapshot for this version of the feed.
+sourceUri: {{ sourceUri }}
+
+# Human readable descriptions about the feed by human language.
+# Must have at least one description.
+#
+descriptions:
+{{#each this.descriptions }}
+- isoCultureCode: {{ this.isoCultureCode }}
+  reporter: {{ this.reporter }}
+  topic: {{ this.topic }}
+  subject: {{ this.subject }}
+  details: {{ this.details }}
+{{/each}}
+
+# The feeds that were merged into this feed.
+#
+sourceFeeds:
+{{#each sourceFeeds }}
+- reporterId: {{this.reporterId}}
+  topicId: {{this.topicId}}
+  sourceUri: {{ this.sourceUri }}
+  descriptions:
+  {{#each this.descriptions }}
+  - isoCultureCode: {{ this.isoCultureCode }}
+    reporter: {{ this.reporter }}
+    topic: {{ this.topic }}
+    subject: {{ this.subject }}
+    details: {{ this.details }}
+  {{/each}}
+  {{#if this.eventCount }}
+  eventCount: {{ eventCount }}
+  {{/if}}
+  {{#if this.updatedAt }}
+  updatedAt: {{ updatedAt }}
+  {{/if}}
+  {{#if this.firstEventAt }}
+  firstEventAt: {{ firstEventAt }}
+  {{/if}}
+  {{#if this.lastEventAt }}
+  lastEventAt: {{ lastEventAt }}
+  {{/if}}
+{{/each}}
+
+# Basic information about the content of this feed besides its sources
+#
+{{#if eventCount }}
+eventCount: {{ eventCount }}
+{{/if}}
+{{#if updatedAt }}
+updatedAt: {{ updatedAt }}
+{{/if}}
+{{#if firstEventAt }}
+firstEventAt: {{ firstEventAt }}
+{{/if}}
+{{#if lastEventAt }}
+lastEventAt: {{ lastEventAt }}
+{{/if}}

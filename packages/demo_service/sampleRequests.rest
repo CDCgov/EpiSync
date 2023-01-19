@@ -1,0 +1,101 @@
+### Reset the demo
+POST http://localhost:4001/api/system/reset
+
+## CA
+
+### Get all cases
+GET http://localhost:4001/api/agencies/cdph.ca.gov/?sort=desc
+
+### Get a case
+GET http://localhost:4001/api/agencies/cdph.ca.gov/cdph.ca.gov.1
+
+### Add a random case
+POST http://localhost:4001/api/agencies/cdph.ca.gov/random
+
+### Add a 20 random cases
+POST http://localhost:4001/api/agencies/cdph.ca.gov/random?numOfDays=2&numPerDay=10
+
+### Add multiple random cases
+POST http://localhost:4001/api/agencies/cdph.ca.gov/random?numOfDays=5&numPerDay=3000
+
+### Publish cases
+POST http://localhost:4001/api/agencies/cdph.ca.gov/publish
+
+### Get the dictionary
+GET http://localhost:4001/api/agencies/cdph.ca.gov/dictionary
+
+### Change the dictionary
+PUT http://localhost:4001/api/agencies/cdph.ca.gov/dictionary/us_caQuestion1
+content-type: application/json
+
+{
+  "name": "us_caQuestion1",
+  "namespace": "us_ca",
+  "type": "string",
+  "tags": [],
+  "descriptions": [{
+    "isoCultureCode": "en-us",
+    "displayName": "CA Question 1",
+    "section": "patient",
+    "details": "pretend good local question"
+  }]
+}
+
+###
+DELETE http://localhost:4001/api/agencies/cdph.ca.gov/dictionary/us_caQuestion1
+
+## CDC
+
+### Get all CDC events
+GET http://localhost:4001/api/agencies/cdc.gov
+
+### Get CDC dictionary
+GET http://localhost:4001/api/agencies/cdc.gov/dictionary
+
+### Get CDC summary
+GET http://localhost:4001/api/agencies/cdc.gov/summary
+
+### Get the subscriber
+GET http://localhost:4001/api/agencies/cdc.gov/subscribers/cases.cdph.ca.gov
+
+### Read the feed once
+POST http://localhost:4001/api/agencies/cdc.gov/subscribers/cases.azphs.gov/read
+
+### Read all feeds once
+POST http://localhost:4001/api/agencies/cdc.gov/subscribers/read
+
+### Publish the CDC feed
+POST http://localhost:4001/api/agencies/cdc.gov/publish
+
+### Start automatic feed reading
+POST http://localhost:4001/api/agencies/cdc.gov/subscribers
+content-type: application/json
+
+{ "automatic": true }
+
+### Stop automatic feed reading
+POST http://localhost:4001/api/agencies/cdc.gov/subscribers
+content-type: application/json
+
+{ "automatic": false }
+
+### Deduplicate the state feed
+POST http://localhost:4001/api/agencies/cdph.ca.gov/deduplicate
+
+### List feed
+GET http://localhost:4001/api/feeds/files?prefix=azphs.gov/cases/
+
+### List feed
+GET http://localhost:4001/api/feeds/files?prefix=cdph.ca.gov/cases/snapshots/
+
+### Get feed snapshot
+GET http://localhost:4001/api/feeds/content?file=cdph.ca.gov/cases/snapshots/1.csv
+
+### Get CA summary
+GET http://localhost:4001/api/feeds/content?file=cdph.ca.gov/cases/summary.yaml
+
+### Get CDC summary
+GET http://localhost:4001/api/feeds/content?file=cdc.gov/cases/summary.yaml
+
+###
+GET http://localhost:4001/api/feeds/content?file=cdph.ca.gov/cases/time_series/20221101T000000-07:00--P1M.csv

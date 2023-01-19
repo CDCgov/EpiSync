@@ -1,0 +1,70 @@
+{
+  "name": "episync-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demonstration website for the EpiSync concept",
+  "repository": "https://github.com/CDCgov/EpiSync.git",
+  "author": "rhawes@cdc.gov",
+  "license": "Apache 2.0",
+  "keywords": [
+    "episync", "cdc"
+  ],
+  "dependencies": {
+    "@material-ui/core": "4.12.3",
+    "@material-ui/icons": "4.11.2",
+    "@material-ui/lab": "4.0.0-alpha.60",
+    "@tanstack/react-query": "^4.14.5",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^18.7.16",
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
+    "axios": "^1.1.3",
+    "chonky": "^2.3.2",
+    "chonky-icon-fontawesome": "^2.3.2",
+    "history": "4.10.1",
+    "http-proxy-middleware": "^2.0.6",
+    "js-file-download": "^0.4.12",
+    "query-string": "6.13.8",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-helmet": "6.1.0",
+    "react-hook-form": "6.15.1",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.8.3",
+    "use-local-storage-state": "9.0.2"
+  },
+  "scripts": {
+    "install-all": "yarn install && yarn install-service",
+    "dev": "concurrently \"yarn run dev-service\" \"yarn run dev-demo\"",
+    "start": "yarn run dev",
+    "upgrade-all": "yarn upgrade && yarn upgrade-service",
+    "dev-demo": "export PORT=4000 && react-scripts start",
+    "build-demo": "react-scripts build",
+    "test-demo": "react-scripts test",
+    "eject-demo": "react-scripts eject",
+    "dev-service": "cd ../demo_service && yarn dev",
+    "install-service": "cd ../demo_service && yarn install",
+    "upgrade-service": "cd ../demo_service && yarn upgrade"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "concurrently": "^7.6.0",
+    "standard": "^17.0.0"
+  }
+}

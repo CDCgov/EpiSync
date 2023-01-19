@@ -1,0 +1,70 @@
+# version of the epicast that is used
+epicastVersion: 0.2
+
+# The topic of the feed and dictionary.
+topicId: {{ topicId }}
+
+# The reporter of the feed and dictionary.
+reporterId: {{ reporterId }}
+
+# The date that this data dictionary was used in this feed
+validFrom: {{ validFrom }}
+
+# The namespaces used in this data dictionary. Since data dictionaries are meant to be composable,
+# unique data elements need a unique name. Epicast central will manage namespace registration.
+#
+namespaces:
+{{#each namespaces }}
+- namespace: {{this.namespace}}
+{{#if this.description }}
+  description: {{this.description}}
+{{/if}}
+{{#if this.sourceUri }}
+  sourceUri: {{ this.sourceUri }}
+{{/if}}
+{{/each}}
+
+# Elements of the dictionary
+#
+# Each element has:
+# - name
+# - displayName (optional)
+# - description (optional)
+# - isMultiValued (optional)
+# - type: either 'string', 'date', 'number', or 'code'
+# - codeSet (optional)
+# - valueSet (optional)
+# - validation (optional)
+#
+elements:
+{{#each elements}}
+- name: {{ this.name }}
+  type: {{ this.type }}
+  {{#if this.isRepeated}}
+  isRepeated: {{this.isRepeated}}
+  {{/if}}
+  {{#if this.codeSet}}
+  codeSet: {{this.codeSet}}
+  {{/if}}
+  {{#if this.validation}}
+  validation: {{this.validation}}
+  {{/if}}
+  tags:
+  {{#each this.tags }}
+  - {{ this }}
+  {{/each}}
+  descriptions:
+  {{#each this.descriptions }}
+  - isoCultureCode: {{ this.isoCultureCode }}
+    displayName: {{ this.displayName }}
+  {{#if this.section }}
+    section: {{ this.section }}
+  {{/if}}
+  {{#if this.details }}
+    details: {{ this.details }}
+  {{/if}}
+  {{#if this.authorComments }}
+    authorComments: {{ this.authorComments }}
+  {{/if}}
+  {{/each}}
+{{/each}}
