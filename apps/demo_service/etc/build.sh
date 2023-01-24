@@ -1,9 +1,9 @@
-rimraf dist
+rimraf build
 
 export NODE_ENV=production
 
 tsc -p ./tsconfig.build.json --pretty
 
-cp -R src/public dist/src/public
+cp -R public build/public
 
-cp package.json dist/
+cp package.json build/
