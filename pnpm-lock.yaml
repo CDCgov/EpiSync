@@ -165,6 +165,7 @@ importers:
       '@types/node': ^16.7.13
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
+      '@types/testing-library__jest-dom': ^5.14.5
       '@typescript-eslint/eslint-plugin': ^5.47.0
       '@typescript-eslint/parser': ^5.47.0
       '@uswds/uswds': 3.1.0
@@ -189,10 +190,11 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.7.0_biqbaboplfbrettd7655fr4n2y
-      react-scripts: 5.0.1_o77wnou4wwnegu5woljtklrzru
+      react-scripts: 5.0.1_wvykjhgtukofhefoe5m2qcm46i
       typescript: 4.9.4
       web-vitals: 2.1.4
     devDependencies:
+      '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
       '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
       eslint: 8.32.0
@@ -4482,7 +4484,6 @@ packages:
     resolution: {integrity: sha512-SBwbxYoyPIvxHbeHxTZX2Pe/74F/tX2/D3mMvzabdeJ25bBojfW0TyB8BHrbq/9zaaKICJZjLP+8r6AeZMFCuQ==}
     dependencies:
       '@types/jest': 29.2.6
-    dev: false
 
   /@types/tmp/0.2.3:
     resolution: {integrity: sha512-dDZH/tXzwjutnuk4UacGgFRwV+JSLaXL1ikvidfJprkb7L9Nx1njcRHHmi3Dsvt7pgqqTEeucQuOrWHPFgzVHA==}
@@ -12591,11 +12592,12 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /react-scripts/5.0.1_o77wnou4wwnegu5woljtklrzru:
+  /react-scripts/5.0.1_wvykjhgtukofhefoe5m2qcm46i:
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     peerDependencies:
+      eslint: '*'
       react: '>= 16'
       typescript: ^3.2.1 || ^4
     peerDependenciesMeta:
