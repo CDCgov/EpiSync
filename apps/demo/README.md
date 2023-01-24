@@ -1,29 +1,22 @@
 
 ## 👉 Get Started
-Install dependencies
-```
-yarn install-all
-```
-Update your `.env` file with values for each environment variable
-```
-API_KEY=AIzaSyBkkFF0XhNZeWuDmOfEhsgdfX1VBG7WTas
-etc ...
-```
 
 Run the development server
+
 ```
 yarn dev
 ```
+
 When the above command completes you'll be able to view your website at `http://localhost:4000`
 
 ## 🥞 Stack
+
 This project uses the following libraries and services:
+
 - Framework - [Create React App](https://create-react-app.dev) with React Router
 - UI Kit - [Material UI](https://material-ui.com)
 - Hosting - TBD
 
-
-## 📚 Guide
 ## A demo script
 
 The prototype should be support a demonstration of these concepts.

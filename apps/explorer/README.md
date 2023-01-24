@@ -1,8 +1,10 @@
-# EpiCast Explorer
+# EpiSync Explorer
 
 ## Introduction
 
-Every EpiCast feed includes a *explorer* website to provide a human readable version of the data in the feed. This project creates a set of static assets that can be copied into the `/explorer` folder of every feed as part of the feed publish process.
+Under Construction
+
+Every EpiSync feed includes a *explorer* website to provide a human readable version of the data in the feed. This project creates a set of static assets that can be copied into the `/explorer` folder of every feed as part of the feed publish process.
 
 The explorer is a React App that only uses the resources in the data feed. It is built to be hosted in an S3 bucket and not require a special web server or api.
 
