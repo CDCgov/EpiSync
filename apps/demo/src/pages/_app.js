@@ -55,7 +55,7 @@ function App(props) {
             size='medium'
             bgImage=''
             bgImageOpacity={1}
-            copyright={`© ${new Date().getFullYear()} Rick Hawes`}
+            copyright={`© ${new Date().getFullYear()} CDC`}
             sticky
           />
         </>

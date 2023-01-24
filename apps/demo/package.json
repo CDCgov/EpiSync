@@ -1,6 +1,6 @@
 {
   "name": "episync-demo",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Demonstration website for the EpiSync concept",
   "repository": "https://github.com/CDCgov/EpiSync.git",
@@ -38,13 +38,11 @@
     "use-local-storage-state": "9.0.2"
   },
   "scripts": {
-    "dev": "concurrently \"pnpm dev-service\" \"pnpm dev-demo\"",
-    "start": "pnpm dev",
-    "dev-demo": "export PORT=4000 && react-scripts start",
-    "build-demo": "react-scripts build",
-    "test-demo": "react-scripts test",
-    "eject-demo": "react-scripts eject",
-    "dev-service": "cd ../demo_service && pnpm dev"
+    "dev": "pnpm start",
+    "start": "export PORT=4000 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

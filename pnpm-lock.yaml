@@ -3,7 +3,10 @@ lockfileVersion: 5.4
 importers:
 
   .:
-    specifiers: {}
+    specifiers:
+      concurrently: ^7.6.0
+    devDependencies:
+      concurrently: 7.6.0
 
   apps/demo:
     specifiers:

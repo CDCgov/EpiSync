@@ -1,6 +1,6 @@
 {
-  "name": "portal",
-  "version": "0.1.0",
+  "name": "episync-explorer",
+  "version": "1.0.0",
   "private": true,
   "description": "Demonstration website for the EpiSync concept",
   "repository": "https://github.com/CDCgov/EpiSync.git",
@@ -23,6 +23,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "dev": "pnpm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

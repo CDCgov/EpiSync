@@ -7,8 +7,11 @@
   "license": "Apache 2.0",
   "private": true,
   "devDependencies": {
+    "concurrently": "^7.6.0"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "demo": "concurrently \"pnpm --filter episync-demo-service dev\" \"pnpm --filter episync-demo dev\"",
+    "test": "pnpm --parallel test"
   }
 }

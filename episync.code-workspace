@@ -5,17 +5,22 @@
       "path": "apps/demo_service"
     },
     {
+      "name": "demo",
+      "path": "apps/demo"
+    },
+    {
       "name": "explorer",
       "path": "apps/explorer"
     },
     {
-      "name": "demo",
-      "path": "apps/demo"
+      "name": "root",
+      "path": "."
     }
   ],
   "settings": {
     "jest.disabledWorkspaceFolders": [
-      "demo"
+      "demo",
+      "root"
     ]
   }
 }
