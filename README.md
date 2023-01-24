@@ -32,8 +32,9 @@ Please read these details on policy, license, and disclaimer.
   * EpiSync generic presentation (TBD)
 * For demonstrators, please look at
   * Cloning and running the demo instruction
-  * Sample demo stript (TBD)
+  * Sample demo stript [demo.md](Demo.md)
 * For contributors, please read
+  * Build the demo [demo.md](Demo.md)
   * Contribution statements [here](CONTRIBUTING.md)
   * Project organization (TBD)
 * For project members, please read
