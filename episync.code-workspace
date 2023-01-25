@@ -13,6 +13,10 @@
       "path": "apps/explorer"
     },
     {
+      "name": "core",
+      "path": "packages/core"
+    },
+    {
       "name": "root",
       "path": "."
     }

@@ -10,23 +10,13 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "typeRoots": [
-      "./src/server/types",
-    ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node16",
-    "forceConsistentCasingInFileNames": true,
-    "target": "ES2020",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "inlineSourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "outDir": "./build"
   }
 }

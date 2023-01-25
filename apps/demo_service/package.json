@@ -23,6 +23,7 @@
     "date-fns": "^2.29.3",
     "debug": "~2.6.9",
     "dotenv-flow": "^3.2.0",
+    "episync-core": "workspace:*",
     "express": "~4.16.4",
     "express-async-handler": "^1.2.0",
     "handlebars": "^4.7.7",
