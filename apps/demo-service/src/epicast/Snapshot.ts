@@ -7,7 +7,7 @@ import { StorageObject, FeedStorage } from './FeedStorage'
 import { formSnaphotUri, formSnapshotKey, SNAPSHOT_FOLDER, versionFromSnapshotKey } from './feedStorageKeys'
 import assert from 'assert'
 import { getLogger } from '../server/loggers'
-import { upsert } from '../collection/upsert'
+import { upsert } from './upsert'
 
 const logger = getLogger('SNAPSHOT')
 

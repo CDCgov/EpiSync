@@ -24,19 +24,19 @@ export class MongoTimeSeriesEvent implements TimeSeriesEvent {
   eventUpdatedAt!: Date
   [name: string]: any
 
-  constructor (from: any) {
+  constructor(from: any) {
     Object.assign(this, from)
   }
 
-  getValue (name: EventElementName): any {
+  getValue(name: EventElementName): any {
     return this[name]
   }
 
-  get _id (): string {
+  get _id(): string {
     return this.eventId
   }
 
-  set _id (id: string) {
+  set _id(id: string) {
     this.eventId = id
   }
 }
@@ -54,7 +54,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
 
   /// Setup Methods
 
-  constructor (
+  constructor(
     initialSummary: FeedSummary,
     initialDictionary: FeedDictionary
   ) {
@@ -65,7 +65,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     this.initialSummary = initialSummary
   }
 
-  async initialize (db: Db): Promise<void> {
+  async initialize(db: Db): Promise<void> {
     logger.info(`Initializing ${this.collectionName} for ${this.summary.reporterId} ...`)
     this.collection = db.collection(this.collectionName)
     await this.collection.deleteMany({})
@@ -73,14 +73,14 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     await this.collection.createIndex({ eventAt: 1 })
   }
 
-  async reset (): Promise<void> {
+  async reset(): Promise<void> {
     await this.dropAllEvents()
     this.resetDictionary()
   }
 
   /// TimeSeries Methods
 
-  async fetchEvents (options: FetchOptions): Promise<TimeSeriesEvent[]> {
+  async fetchEvents(options: FetchOptions): Promise<TimeSeriesEvent[]> {
     if (this.collection === undefined) return []
     const whereClause: any = {
     }
@@ -115,7 +115,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     return rawEvents.map(e => new MongoTimeSeriesEvent(e))
   }
 
-  async fetchOneEvent (options: FetchOneOptions): Promise<TimeSeriesEvent | null> {
+  async fetchOneEvent(options: FetchOneOptions): Promise<TimeSeriesEvent | null> {
     if (this.collection === undefined) return null
 
     let rawEvent = null
@@ -141,7 +141,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     return new MongoTimeSeriesEvent(rawEvent)
   }
 
-  async countEvents (options: CountOptions): Promise<number> {
+  async countEvents(options: CountOptions): Promise<number> {
     if (this.collection === undefined) return 0
     const whereClause: any = {
     }
@@ -164,7 +164,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     return await this.collection.countDocuments(whereClause)
   }
 
-  async fetchMetadata (): Promise<TimeSeriesMetadata | null> {
+  async fetchMetadata(): Promise<TimeSeriesMetadata | null> {
     if (this.collection === undefined) return null
     const lastUpdatedEvent = await this.fetchLastUpdatedEvent()
     if (lastUpdatedEvent === null) return null
@@ -183,7 +183,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
 
   /// Mutable TimeSeries methods
 
-  async upsertEvents (events: MongoTimeSeriesEvent[]): Promise<void> {
+  async upsertEvents(events: MongoTimeSeriesEvent[]): Promise<void> {
     if (this.collection === undefined) return
     logger.debug(`Upserting ${events.length} events...`)
     if (events.length === 0) return
@@ -200,7 +200,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     this.summary = updateFeedSummary(this.initialSummary, { metadata })
   }
 
-  async deleteEvents (events: TimeSeriesDeletedEvent[]): Promise<void> {
+  async deleteEvents(events: TimeSeriesDeletedEvent[]): Promise<void> {
     if (this.collection === undefined) return
     logger.debug(`Deleting ${events.length} events...`)
     if (events.length === 0) return
@@ -216,7 +216,7 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     this.summary = updateFeedSummary(this.initialSummary, { metadata })
   }
 
-  createEvent (eventValues: any): MongoTimeSeriesEvent {
+  createEvent(eventValues: any): MongoTimeSeriesEvent {
     const updatedValues = {
       ...eventValues,
       eventId: eventValues.eventId !== undefined ? eventValues.eventId : this.generateNextId(),
@@ -227,42 +227,42 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
 
   /// Additional methods
 
-  private generateNextId (): string {
+  private generateNextId(): string {
     return `${this.dictionary.reporterId}.${this.lastEventNumber++}`
   }
 
-  async fetchLastUpdatedEvent (): Promise<MongoTimeSeriesEvent | null> {
+  async fetchLastUpdatedEvent(): Promise<MongoTimeSeriesEvent | null> {
     if (this.collection === undefined) return null
     return await this.collection
       .findOne({ eventIsDeleted: { $ne: true } }, { sort: { eventUpdatedAt: -1 } })
   }
 
-  async fetchLastEvent (): Promise<MongoTimeSeriesEvent | null> {
+  async fetchLastEvent(): Promise<MongoTimeSeriesEvent | null> {
     if (this.collection === undefined) return null
     return await this.collection
       .findOne({ eventIsDeleted: { $ne: true } }, { sort: { eventAt: -1 } })
   }
 
-  async fetchFirstEvent (): Promise<MongoTimeSeriesEvent | null> {
+  async fetchFirstEvent(): Promise<MongoTimeSeriesEvent | null> {
     if (this.collection === undefined) return null
     return await this.collection
       .findOne({ eventIsDeleted: { $ne: true } }, { sort: { eventAt: 1 } })
   }
 
-  async countAll (): Promise<number> {
+  async countAll(): Promise<number> {
     if (this.collection === undefined) return 0
     return await this.collection
       .countDocuments({ eventIsDeleted: { $ne: true } })
   }
 
-  async fetchAllEvents (): Promise<MongoTimeSeriesEvent[]> {
+  async fetchAllEvents(): Promise<MongoTimeSeriesEvent[]> {
     if (this.collection === undefined) return []
     return await this.collection
       .find({ eventIsDeleted: { $ne: true } }, { sort: { eventAt: 1 } })
       .toArray()
   }
 
-  async dropAllEvents (): Promise<void> {
+  async dropAllEvents(): Promise<void> {
     if (this.collection === undefined) return
     await this.collection.deleteMany({})
     this.summary = this.initialSummary
@@ -270,15 +270,15 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
 
   /// Dictionary Methods
 
-  addFeedElement (element: FeedElement): boolean {
+  addFeedElement(element: FeedElement): boolean {
     return this.dictionary.addElement(element)
   }
 
-  deleteFeedElement (name: string): boolean {
+  deleteFeedElement(name: string): boolean {
     return this.dictionary.deleteElement(name)
   }
 
-  updateSubscriberDictionary (subscriberDictionary: FeedDictionary): void {
+  updateSubscriberDictionary(subscriberDictionary: FeedDictionary): void {
     const existingDictionary = this.subscriberDictionaries.find(d => d.reporterId === subscriberDictionary.reporterId)
     if (existingDictionary !== undefined &&
       isSameSecond(existingDictionary.validFrom, subscriberDictionary.validFrom)) {
@@ -291,14 +291,14 @@ export class MongoTimeSeries implements MutableTimeSeries<MongoTimeSeriesEvent> 
     logger.debug(`Updated dictionary ${this.dictionary.reporterId} with new ${subscriberDictionary.reporterId}`)
   }
 
-  resetDictionary (): void {
+  resetDictionary(): void {
     this.dictionary = new MutableFeedDictionary(this.initialDictionary)
     this.subscriberDictionaries = []
   }
 
   /// Summary Methods
 
-  updateSubscriberSummary (subscriberSummary: FeedSummary): void {
+  updateSubscriberSummary(subscriberSummary: FeedSummary): void {
     this.summary = updateFeedSummary(this.summary, { sourceFeed: subscriberSummary })
   }
 }

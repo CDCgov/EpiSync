@@ -9,7 +9,7 @@ import { TimeSeries } from './TimeSeries'
 const logger = getLogger('PUBLISH_DICTIONARY_SERVICE')
 const SUMMARY_TEMPLATE_PATH = './public/summary.handlebars'
 
-export async function publishSummary (
+export async function publishSummary(
   toSnapshot: MutableSnapshot,
   timeSeries: TimeSeries
 ): Promise<void> {
