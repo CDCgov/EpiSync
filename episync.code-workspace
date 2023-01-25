@@ -2,7 +2,7 @@
   "folders": [
     {
       "name": "service",
-      "path": "apps/demo_service"
+      "path": "apps/demo-service"
     },
     {
       "name": "demo",
