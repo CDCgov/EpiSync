@@ -1,4 +1,4 @@
-import { TimeSeriesDeletedEvent } from '@/epicast/TimeSeries'
+import { TimeSeriesDeletedEvent } from 'episync-core'
 import { getLogger } from 'log4js'
 import { MongoTimeSeries, MongoTimeSeriesEvent } from './MongoTimeSeries'
 

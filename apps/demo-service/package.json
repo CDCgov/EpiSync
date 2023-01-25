@@ -17,9 +17,7 @@
     "@aws-sdk/credential-providers": "^3.256.0",
     "@faker-js/faker": "^7.6.0",
     "@types/validator": "^13.7.11",
-    "async-mutex": "^0.4.0",
     "cookie-parser": "~1.4.6",
-    "csv-string": "^4.1.1",
     "date-fns": "^2.29.3",
     "debug": "~2.6.9",
     "dotenv-flow": "^3.2.0",
@@ -36,8 +34,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "tinyduration": "^3.2.4",
-    "tsdef": "^0.0.14",
-    "yaml": "^2.2.1"
+    "tsdef": "^0.0.14"
   },
   "devDependencies": {
     "@jest/globals": "^29.3.1",

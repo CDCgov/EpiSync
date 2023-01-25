@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { Feature } from '../../server/Feature'
 import agenciesRouter from './agencyRoutes'
 import { MongoTimeSeries, MongoTimeSeriesEvent } from './MongoTimeSeries'
-import { MutableTimeSeries } from '../../epicast/TimeSeries'
+import { MutableTimeSeries } from 'episync-core'
 import { FeedSubscriber } from './FeedSubscriber'
 import { initialCASummary, initialAZSummary, initialCDCSummary, initialStateDictionary, initialCommonCaseDictionary } from './agencyModels'
 import { AppState } from '../../server/AppState'
 import { insertFakeCases } from './insertFakeCases'
-import { publishFeed } from '../../epicast/publishFeed'
+import { publishFeed } from 'episync-core'
 
 export interface AgencyModel {
   name: string

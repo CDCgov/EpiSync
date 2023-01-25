@@ -4,12 +4,9 @@ import { TimeSeries } from './TimeSeries'
 import { makeCasePartions, TimeSeriesPartition } from './TimeSeriesPartition'
 import { Frequency } from './Frequency'
 import { groupBy } from './groupBy'
-import { getLogger } from '../server/loggers'
 import { stringify } from 'csv-string'
 import { formatISO } from 'date-fns'
 import { FeedSummary } from './FeedSummary'
-
-const logger = getLogger('PUBLISH_AGREGATES_SERVICE')
 
 export async function publishAggregates (toSnapshot: MutableSnapshot, fromTimeSeries: TimeSeries): Promise<void> {
   const publisher = new AggregatesPublisher(toSnapshot, fromTimeSeries)
@@ -29,7 +26,7 @@ class AggregatesPublisher {
   }
 
   async publish (): Promise<void> {
-    logger.info('Publishing an aggregate')
+    // TODO: logger.info('Publishing an aggregate')
     const events = await this.timeSeries.fetchEvents({ sortDescending: false })
     if (events.length === 0) return
     const partitions = makeCasePartions(events, Frequency.DAILY)

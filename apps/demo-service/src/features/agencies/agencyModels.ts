@@ -1,6 +1,4 @@
-import { FeedDictionary } from '../../epicast/FeedDictionary'
-import { FeedSummary } from '../../epicast/FeedSummary'
-import { requiredElements } from '../../epicast/requiredElements'
+import { FeedDictionary, FeedSummary, requiredElements } from 'episync-core'
 
 export const commonTopic = 'cases'
 export const commonTopicFullName = 'Demonstration cases'

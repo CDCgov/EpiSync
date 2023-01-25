@@ -6,10 +6,7 @@ import { join } from 'path'
 import { StorageObject, FeedStorage } from './FeedStorage'
 import { formSnaphotUri, formSnapshotKey, SNAPSHOT_FOLDER, versionFromSnapshotKey } from './feedStorageKeys'
 import assert from 'assert'
-import { getLogger } from '../server/loggers'
 import { upsert } from './upsert'
-
-const logger = getLogger('SNAPSHOT')
 
 export interface Snapshot {
   readonly version?: number
@@ -114,7 +111,7 @@ export class SnapshotWriter extends SnapshotReader implements MutableSnapshot {
 
   async putObject (key: string, value: string): Promise<void> {
     if (!this.initializedCalled) throw Error('Initialized must be called')
-    logger.info(`Put of object: ${key}`)
+    // logger.info(`Put of object: ${key}`)
     const writtenObject = await this.storage.putObject(this.formKey(key), value)
     const snapshotKey = writtenObject.key.substring(this.folder.length + 1)
     const snapshotObject: StorageObject = { ...writtenObject, key: snapshotKey }
@@ -124,7 +121,7 @@ export class SnapshotWriter extends SnapshotReader implements MutableSnapshot {
 
   async deleteObject (key: string): Promise<void> {
     if (!this.initializedCalled) throw Error('Initialized must be called')
-    logger.info(`Delete of object: ${key}`)
+    // logger.info(`Delete of object: ${key}`)
     const index = this.storageObjects.findIndex((object) => object.key === key)
     if (index !== -1) {
       await this.storage.deleteObject(this.formKey(key))

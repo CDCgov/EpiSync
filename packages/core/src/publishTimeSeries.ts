@@ -10,19 +10,16 @@ import { TimeSeries, TimeSeriesEvent } from './TimeSeries'
 import { FeedElement, filterElements } from './FeedElement'
 import { MutableSnapshot } from './Snapshot'
 import { TimeSeriesPartition, makeCasePartions } from './TimeSeriesPartition'
-import { getLogger } from '../server/loggers'
 import { PublishFeedOptions } from './publishFeed'
 
 const DESIRED_MAX_MONTHLY_COUNT = 10000 / 30
-
-const logger = getLogger('PUBLISH_TIME_SERIES_SERVICE')
 
 export async function publishTimeseries (
   toSnapshot: MutableSnapshot,
   timeseries: TimeSeries,
   publishOptions: PublishFeedOptions
 ): Promise<number> {
-  logger.info(`publishing timeseries: ${timeseries.summary.topicId}-${timeseries.summary.reporterId}`)
+  // TODO: logger.info(`publishing timeseries: ${timeseries.summary.topicId}-${timeseries.summary.reporterId}`)
   const publisher = new TimeSeriesPublisher(toSnapshot, timeseries, publishOptions)
   return await publisher.publish()
 }
@@ -54,12 +51,12 @@ class TimeSeriesPublisher {
       const isPeriodUpdated = await this.hasUpdates(period, lastPublishDate)
       if (isPeriodUpdated) {
         const periodCases = await this.timeSeries.fetchEvents({ interval: period.interval })
-        logger.debug(`updating partition ${publishedObject.key} with ${periodCases.length} cases`)
+        // logger.debug(`updating partition ${publishedObject.key} with ${periodCases.length} cases`)
         await this.putPartition(period, periodCases)
 
         const periodDeletedCases = await this.timeSeries.fetchEvents({ interval: period.interval, isDeleted: true })
         if (periodDeletedCases.length > 0) {
-          logger.debug(`updating deleted for ${publishedObject.key} with ${periodDeletedCases.length} cases`)
+          // logger.debug(`updating deleted for ${publishedObject.key} with ${periodDeletedCases.length} cases`)
           await this.putDeletedPartition(period, periodDeletedCases)
         }
         count += 1

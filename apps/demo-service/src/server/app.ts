@@ -13,9 +13,10 @@ import { AgenciesFeature } from '../features/agencies/AgenciesFeature'
 import { AppState } from './AppState'
 import { Db } from 'mongodb'
 import { config } from 'dotenv-flow'
-import { FeedStorage } from '@/epicast/FeedStorage'
+import { FeedStorage } from 'episync-core'
 import { S3FeedStorage } from './S3FeedStorage'
 import { LocalFeedStorage } from './LocalFeedStorage'
+
 
 // Load the .env config file into process.env
 const loaded = config()

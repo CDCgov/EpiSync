@@ -1,4 +1,4 @@
-import { Period } from '../epicast/Period'
+import { Period } from './Period'
 import { formatISO } from 'date-fns'
 import pathPosix from 'node:path/posix'
 import { FeedStorage } from './FeedStorage'

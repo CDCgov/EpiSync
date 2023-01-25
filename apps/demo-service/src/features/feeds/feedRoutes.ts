@@ -2,7 +2,7 @@ import express from 'express'
 import { getLogger } from '../../server/loggers'
 import asyncHandler from 'express-async-handler'
 import { getFileData } from './getFileData'
-import { FeedStorage } from '@/epicast/FeedStorage'
+import { FeedStorage } from 'episync-core'
 const router = express.Router()
 const logger = getLogger('FEED_ROUTE')
 

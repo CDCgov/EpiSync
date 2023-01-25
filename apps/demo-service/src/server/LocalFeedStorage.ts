@@ -1,4 +1,4 @@
-import { FeedStorage, StorageObject } from '@/epicast/FeedStorage'
+import { FeedStorage, StorageObject } from 'episync-core'
 import { existsSync } from 'fs'
 import { readdir, readFile, writeFile, stat, mkdir, rm } from 'fs/promises'
 import { getLogger } from 'log4js'

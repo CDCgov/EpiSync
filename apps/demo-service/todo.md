@@ -10,7 +10,7 @@
 * [x] Add API tests
 * [ ] Add subscriber API tests
 * [ ] Add dictionary API tests
-* [ ] Mongoose memory db to speedup tests?
+* [x] Mongoose memory db to speedup tests?
 
 ## Concept mapping
 
@@ -34,3 +34,8 @@
 ## Improved partitioning
 
 * [ ] Experiment with current month in days, last month in months as default
+
+## EpiSync Core
+
+* [x] Make a core library from the EpiCast folder
+* [ ] Add logging to the library where it was before (EventEmitter pattern?, Logger?)

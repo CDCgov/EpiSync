@@ -4,13 +4,10 @@ import { strict as assert } from 'node:assert'
 
 import { StorageObject } from './FeedStorage'
 import { formDeletedKeyFromTimeSeriesKey, TIMESERIES_FOLDER } from './feedStorageKeys'
-import { getLogger } from '../server/loggers'
 import { MutableTimeSeries, TimeSeriesDeletedEvent } from './TimeSeries'
 import { FeedElement } from './FeedElement'
 import { FeedDictionary } from './FeedDictionary'
 import { Snapshot } from './Snapshot'
-
-const logger = getLogger('READ_TIME_SERIES_CONTROLLER')
 
 export async function readTimeSeries<T> (
   fromSnapshot: Snapshot,
@@ -34,7 +31,7 @@ class TimeSeriesReader<T> {
 
   async read (): Promise<Date | undefined> {
     const snapshotVersion = this.snapshot.version?.toString() ?? 'empty'
-    logger.info(`Reading: ${this.snapshot.uri ?? 'never'}; snapshot version: ${snapshotVersion} `)
+    // logger.info(`Reading: ${this.snapshot.uri ?? 'never'}; snapshot version: ${snapshotVersion} `)
     let publishedObjects = await this.snapshot.listObjects(TIMESERIES_FOLDER)
     if (publishedObjects.length === 0) return
     const lastPublished = this.lastModifiedOf(publishedObjects)
@@ -42,7 +39,7 @@ class TimeSeriesReader<T> {
     if (lastEvent !== null) {
       publishedObjects = publishedObjects.filter((object) => isAfter(object.lastModified, lastEvent.eventUpdatedAt))
     }
-    logger.debug(`Snapshot ${snapshotVersion} has ${publishedObjects.length} files to read`)
+    // logger.debug(`Snapshot ${snapshotVersion} has ${publishedObjects.length} files to read`)
 
     const events = await this.fetchEvents(publishedObjects)
     await this.timeSeries.upsertEvents(events)

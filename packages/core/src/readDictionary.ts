@@ -1,13 +1,10 @@
 import YAML from 'yaml'
 import { isAfter } from 'date-fns'
-import { getLogger } from '../server/loggers'
 
 import { MutableTimeSeries } from './TimeSeries'
 import { FeedDictionary, FeedDictionaryYaml, fromYaml } from './FeedDictionary'
 import { DICTIONARY_FOLDER } from './feedStorageKeys'
 import { Snapshot } from './Snapshot'
-
-const logger = getLogger('READ_DICTIONARY_SERVICE')
 
 export async function readDictionary<T> (
   fromSnapshot: Snapshot,
@@ -15,15 +12,15 @@ export async function readDictionary<T> (
 ): Promise<FeedDictionary | null> {
   const publishedBlobKey = findLastDictionaryKey(fromSnapshot, mutatingTimeSeries.dictionary.validFrom)
   if (publishedBlobKey === null) {
-    logger.debug('No dictionary found')
+    // TODO: logger.debug('No dictionary found')
     return null
   }
 
-  logger.info(`Reading dictionary: ${publishedBlobKey}`)
+  // TODO: logger.info(`Reading dictionary: ${publishedBlobKey}`)
   const publishedBlob = await fromSnapshot.getObject(publishedBlobKey)
   const newDictionary = fromYaml(YAML.parse(publishedBlob) as FeedDictionaryYaml)
   if (!isValidDictionary(newDictionary, mutatingTimeSeries.dictionary.topicId)) {
-    logger.debug('Invalid dictionary')
+    // TODO: logger.debug('Invalid dictionary')
     return null
   }
 
@@ -34,7 +31,7 @@ export async function readDictionary<T> (
 function findLastDictionaryKey (fromSnapshot: Snapshot, afterDate: Date | null): string | null {
   let objects = fromSnapshot.listObjects(DICTIONARY_FOLDER)
   if (objects.length === 0) {
-    logger.debug(`No dictionaries in ${fromSnapshot.uri ?? ''}`)
+    // TODO: logger.debug(`No dictionaries in ${fromSnapshot.uri ?? ''}`)
     return null
   }
   if (objects.length === 1) {

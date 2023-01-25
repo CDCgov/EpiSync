@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs'
-import { getLogger } from '../server/loggers'
 import { formatISO } from 'date-fns'
 import { compile } from 'handlebars'
+import path from 'node:path'
 
 import { formDictionaryKey } from './feedStorageKeys'
 import { FeedDictionary } from './FeedDictionary'
@@ -9,8 +9,7 @@ import { filterElements } from './FeedElement'
 import { MutableSnapshot } from './Snapshot'
 import { PublishFeedOptions } from './publishFeed'
 
-const logger = getLogger('PUBLISH_DICTIONARY_SERVICE')
-const DICTIONARY_TEMPLATE_PATH = './public/dictionary.handlebars'
+const DICTIONARY_TEMPLATE_PATH = '../statics/dictionary.handlebars'
 
 export async function publishDictionary (
   toSnapshot: MutableSnapshot,
@@ -19,8 +18,8 @@ export async function publishDictionary (
 ): Promise<void> {
   const dictionaryKey = formDictionaryKey(dictionary.topicId, dictionary.validFrom)
   if (!toSnapshot.doesObjectExist(dictionaryKey)) {
-    logger.info('publishing data dictionary')
-    const dictionaryTemplate = readFileSync(DICTIONARY_TEMPLATE_PATH, { encoding: 'utf8' })
+    // TODO logger.info('publishing data dictionary')
+    const dictionaryTemplate = readFileSync(path.resolve(__dirname, DICTIONARY_TEMPLATE_PATH), { encoding: 'utf8' })
     const compiledDictionaryTemplate = compile(dictionaryTemplate)
     const templateContext = formTemplateContext(dictionary, publishOptions)
     const rawDictionary = compiledDictionaryTemplate(templateContext)

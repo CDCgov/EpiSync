@@ -1,7 +1,7 @@
 
 import { FileData, FileArray } from './FileArray'
-import path from 'path/posix'
-import { FeedStorage } from '@/epicast/FeedStorage'
+import path from 'node:path'
+import { FeedStorage } from 'episync-core'
 
 export async function getFileData (storage: FeedStorage, prefix: string): Promise<FileArray> {
   const chonkyFiles: FileArray = []
