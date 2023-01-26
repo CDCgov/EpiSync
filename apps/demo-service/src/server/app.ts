@@ -108,12 +108,9 @@ export class App {
   async clearStores (): Promise<void> {
     logger.info('Clearing stores...')
     const state = this.formAppState()
-    const collectionNames = []
-    for (const feature of this.features) {
-      await feature.clearStores(state)
-      collectionNames.push(...feature.collectionsUsed)
-    }
-    // Collection names may have changed between builds. Clear unused collections
+    await state.feedStorage.clearAll()
+    // Collections may be in memory or in persisted db 
+    const collectionNames = this.features.flatMap(feature => feature.collectionsUsed)
     await dropCollections(state.db, collectionNames)
   }
 
