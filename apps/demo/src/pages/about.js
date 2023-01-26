@@ -11,7 +11,7 @@ function AboutPage (props) {
         size='medium'
         bgImage=''
         bgImageOpacity={1}
-        title='About EpiCast'
+        title='About EpiSync'
         subtitle='Lots to learn.'
       />
     </>

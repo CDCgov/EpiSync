@@ -3,7 +3,7 @@
 ## Add tests tasks
 
 * [x] Add Jest
-* [ ] Add EpiCast package tests
+* [ ] Add EpiSync package tests
 * [x] Add unit tests for some
 * [ ] Add Summary unit tests
 * [ ] Add Dictionary unit tests
@@ -37,5 +37,5 @@
 
 ## EpiSync Core
 
-* [x] Make a core library from the EpiCast folder
+* [x] Make a core library from the EpiSync folder
 * [ ] Add logging to the library where it was before (EventEmitter pattern?, Logger?)

@@ -79,7 +79,7 @@ export const initialCommonCaseDictionary: FeedDictionary = {
     },
     {
       namespace: 'event',
-      description: 'Core EpiCast elements'
+      description: 'Core EpiSync elements'
     }
   ],
   elements: requiredElements.concat([

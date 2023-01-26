@@ -5,7 +5,7 @@
 The server part of the demo implements all the backend code for the demo. This includes:
 
 * The database for both CDC and state cases
-* The EpiCast publish and EpiCast read functions
+* The EpiSync publish and EpiSync read functions
 
 ## Starting ##
 

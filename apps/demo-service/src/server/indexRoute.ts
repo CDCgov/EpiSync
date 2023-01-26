@@ -5,8 +5,8 @@ const logger = getLogger('INDEX_ROUTE')
 
 /* GET home page. */
 router.get('/', function (_req, res, _next) {
-  logger.info('hello world from EpiCast Demo')
-  res.render('index', { title: 'EpiCast Demo' })
+  logger.info('hello world from EpiSync Demo')
+  res.render('index', { title: 'EpiSync Demo' })
 })
 
 export default router

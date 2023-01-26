@@ -9,7 +9,7 @@ export interface FeedElement {
 
   /**
    * The namespace used to define the element. The element name must start with the namespace.
-   * Namespaces are handed out globally at EpiCast centeral.
+   * Namespaces are handed out globally at EpiSync centeral.
    */
   namespace: string
 

@@ -44,13 +44,13 @@ function SimpleBreadcrumbs () {
               pathnames.length === 0
                 ? (
                   <Typography variant={typographyVariant}>
-                    EpiCast
+                    EpiSync
                   </Typography>
                   )
                 : (
                   <RouterLink to='/' key='/' className='MuiTypography-root MuiLink-root MuiLink-underlineHover'>
                     <Typography variant={typographyVariant}>
-                      EpiCast
+                      EpiSync
                     </Typography>
                   </RouterLink>
                   )

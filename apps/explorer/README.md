@@ -10,4 +10,4 @@ The explorer is a React App that only uses the resources in the data feed. It is
 
 ## Background
 
-EpiCast aims to be both a machine readable and a human readable format. It uses formats that like CSV and YAML that are good representations of this goal. Nevertheless, the explorer improves upon the readability of these formats by providing a well designed user interface.
+EpiSync aims to be both a machine readable and a human readable format. It uses formats that like CSV and YAML that are good representations of this goal. Nevertheless, the explorer improves upon the readability of these formats by providing a well designed user interface.

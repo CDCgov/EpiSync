@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { cdcCases, cdcCasesDictionary, cdcCasesSubscriber } from '../features/cdcCases/cdcCasesKeys'
 import { stateCases, stateCasesDictionary } from '../features/stateCases/stateCasesKeys'
 
-function ResetPage(props) {
+function ResetPage (props) {
   const history = useHistory()
   const queryClient = useQueryClient()
   const resetSystemMutation = useMutation({

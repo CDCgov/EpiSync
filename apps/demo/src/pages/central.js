@@ -11,7 +11,7 @@ export default function CentralPage(props) {
         size='medium'
         bgImage=''
         bgImageOpacity={1}
-        title='EpiCast Central'
+        title='EpiSync Central'
         subtitle='Under construction'
       />
     </>

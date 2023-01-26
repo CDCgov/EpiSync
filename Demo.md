@@ -58,7 +58,7 @@ pnpm demo
    1. Nav to CDC again
    2. Read subscriptions again
    3. Notice that the duplicate CA cases are now gone
-   4. Speak about consistency and easy handling of corrections from EpiCast
+   4. Speak about consistency and easy handling of corrections from EpiSync
 7. Show a schema change
    1. Nav to CA gain
    2. Change the schema

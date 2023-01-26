@@ -1,8 +1,7 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
   "include": [
-    ".",
-    "../../apps/demo-service/src/epicast/updateFeedSummary.ts"
+    "."
   ],
   "exclude": [
     "build",
