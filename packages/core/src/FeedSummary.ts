@@ -1,6 +1,6 @@
 
 export interface FeedSummary {
-  epicastVersion: string
+  episyncVersion: string
   reporterId: string
   topicId: string
   sourceUri: string

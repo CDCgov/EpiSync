@@ -6,7 +6,7 @@ export const commonTopicFullName = 'Demonstration cases'
 // Initial summary for the feeds
 //
 export const initialCASummary: FeedSummary = {
-  epicastVersion: '0.1',
+  episyncVersion: '0.1',
   reporterId: 'cdph.ca.gov',
   topicId: commonTopic,
   sourceUri: '',
@@ -22,7 +22,7 @@ export const initialCASummary: FeedSummary = {
 }
 
 export const initialAZSummary: FeedSummary = {
-  epicastVersion: '0.1',
+  episyncVersion: '0.1',
   reporterId: 'azphs.gov',
   topicId: commonTopic,
   sourceUri: '',
@@ -38,7 +38,7 @@ export const initialAZSummary: FeedSummary = {
 }
 
 export const initialCDCSummary: FeedSummary = {
-  epicastVersion: '0.1',
+  episyncVersion: '0.1',
   reporterId: 'cdc.gov',
   topicId: commonTopic,
   sourceUri: '',

@@ -19,7 +19,7 @@ export async function attachToDb (): Promise<Db> {
   client.on('commandSucceeded', (event) => logger.debug(event))
   client.on('commandFailed', (event) => logger.debug(event))
 
-  const dbName = process.env.MONGO_DB ?? 'epicast_demo'
+  const dbName = process.env.MONGO_DB ?? 'episync_demo'
   logger.info(`Connecting to Mongo ${mongoUri} and db ${dbName}`)
 
   await client.connect()

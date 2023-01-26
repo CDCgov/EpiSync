@@ -25,6 +25,10 @@
     "jest.disabledWorkspaceFolders": [
       "demo",
       "root"
-    ]
+    ],
+    "search.exclude": {
+      "**/build": true,
+      "**/dist": true
+    }
   }
 }
