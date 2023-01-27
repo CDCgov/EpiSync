@@ -16,12 +16,12 @@ validFrom: {{ validFrom }}
 namespaces:
 {{#each namespaces }}
 - namespace: {{this.namespace}}
-{{#if this.description }}
+  {{#if this.description }}
   description: {{this.description}}
-{{/if}}
-{{#if this.sourceUri }}
+  {{/if}}
+  {{#if this.sourceUri }}
   sourceUri: {{ this.sourceUri }}
-{{/if}}
+  {{/if}}
 {{/each}}
 
 # Elements of the dictionary
@@ -57,14 +57,14 @@ elements:
   {{#each this.descriptions }}
   - isoCultureCode: {{ this.isoCultureCode }}
     displayName: {{ this.displayName }}
-  {{#if this.section }}
+    {{#if this.section }}
     section: {{ this.section }}
-  {{/if}}
-  {{#if this.details }}
+    {{/if}}
+    {{#if this.details }}
     details: {{ this.details }}
-  {{/if}}
-  {{#if this.authorComments }}
+    {{/if}}
+    {{#if this.authorComments }}
     authorComments: {{ this.authorComments }}
-  {{/if}}
+    {{/if}}
   {{/each}}
 {{/each}}

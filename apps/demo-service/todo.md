@@ -12,6 +12,11 @@
 * [ ] Add dictionary API tests
 * [x] Mongoose memory db to speedup tests?
 
+## Multiple topics support
+
+* [ ] Change URLs
+* [ ] Change tests
+
 ## Concept mapping
 
 * [ ] Understand FHIR concept map and value sets. Use directly?
