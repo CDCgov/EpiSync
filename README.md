@@ -39,3 +39,5 @@ Please read these details on policy, license, and disclaimer.
   * Project organization (TBD)
 * For project members, please read
   * How we work (TBD)
+
+## Notes
