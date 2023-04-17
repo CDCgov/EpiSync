@@ -11,7 +11,7 @@ import { PublishFeedOptions } from './publishFeed'
 
 const DICTIONARY_TEMPLATE_PATH = '../statics/dictionary.handlebars'
 
-export async function publishDictionary (
+export async function publishDictionary(
   toSnapshot: MutableSnapshot,
   dictionary: FeedDictionary,
   publishOptions: PublishFeedOptions
@@ -27,7 +27,7 @@ export async function publishDictionary (
   }
 }
 
-function formTemplateContext (dictionary: FeedDictionary, publishOptions: PublishFeedOptions): any {
+function formTemplateContext(dictionary: FeedDictionary, publishOptions: PublishFeedOptions): any {
   const publishedElements = publishOptions.excludePII ?? false
     ? filterElements(dictionary.elements, 'pii')
     : dictionary.elements
@@ -36,7 +36,7 @@ function formTemplateContext (dictionary: FeedDictionary, publishOptions: Publis
     topicId: dictionary.topicId,
     reporterId: dictionary.reporterId,
     validFrom: formatISO(dictionary.validFrom),
-    namespaces: dictionary.namespaces,
+    imports: dictionary.imports,
     elements: publishedElements
   }
 }

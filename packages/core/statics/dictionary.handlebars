@@ -10,12 +10,12 @@ reporterId: {{ reporterId }}
 # The date that this data dictionary was used in this feed
 validFrom: {{ validFrom }}
 
-# The namespaces used in this data dictionary. Since data dictionaries are meant to be composable,
-# unique data elements need a unique name. EpiSync central will manage namespace registration.
+# The imported dictionaries used in this data dictionary. Since data dictionaries are meant to be composable,
+# unique data elements need a unique name.
 #
-namespaces:
-{{#each namespaces }}
-- namespace: {{this.namespace}}
+imports:
+{{#each imports }}
+- name: {{this.name}}
   {{#if this.description }}
   description: {{this.description}}
   {{/if}}
@@ -28,7 +28,7 @@ namespaces:
 #
 # Each element has:
 # - name
-# - basedOn: (optional) If present follow the URL
+# - follows: (optional) If present follow the URL
 # - displayName (optional)
 # - description (optional)
 # - isMultiValued (optional)

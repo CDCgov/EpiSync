@@ -5,7 +5,7 @@ export interface FeedDictionary {
   readonly topicId: string
   readonly reporterId: string
   readonly validFrom: Date
-  readonly namespaces: FeedNamespace[]
+  readonly imports: FeedImports[]
   readonly elements: FeedElement[]
 }
 
@@ -14,17 +14,17 @@ export interface FeedDictionaryYaml {
   readonly topicId: string
   readonly reporterId: string
   readonly validFrom: string
-  readonly namespaces: FeedNamespace[]
+  readonly imports: FeedImports[]
   readonly elements: FeedElement[]
 }
 
-export function fromYaml (yaml: FeedDictionaryYaml): FeedDictionary {
+export function fromYaml(yaml: FeedDictionaryYaml): FeedDictionary {
   const validFrom = yaml.validFrom
   return { ...yaml, validFrom: parseISO(validFrom) }
 }
 
-export interface FeedNamespace {
-  readonly namespace: string
+export interface FeedImports {
+  readonly name: string
   readonly description?: string
   readonly sourceUri?: string
   // More to be defined later

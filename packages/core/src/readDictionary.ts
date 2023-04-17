@@ -6,7 +6,7 @@ import { FeedDictionary, FeedDictionaryYaml, fromYaml } from './FeedDictionary'
 import { DICTIONARY_FOLDER } from './feedStorageKeys'
 import { Snapshot } from './Snapshot'
 
-export async function readDictionary<T> (
+export async function readDictionary<T>(
   fromSnapshot: Snapshot,
   mutatingTimeSeries: MutableTimeSeries<T>
 ): Promise<FeedDictionary | null> {
@@ -28,7 +28,7 @@ export async function readDictionary<T> (
   return newDictionary
 }
 
-function findLastDictionaryKey (fromSnapshot: Snapshot, afterDate: Date | null): string | null {
+function findLastDictionaryKey(fromSnapshot: Snapshot, afterDate: Date | null): string | null {
   let objects = fromSnapshot.listObjects(DICTIONARY_FOLDER)
   if (objects.length === 0) {
     // TODO: logger.debug(`No dictionaries in ${fromSnapshot.uri ?? ''}`)
@@ -45,10 +45,10 @@ function findLastDictionaryKey (fromSnapshot: Snapshot, afterDate: Date | null):
   return lastDictionary.key
 }
 
-function isValidDictionary (dictionary: FeedDictionary, expectedTopic: string): boolean {
+function isValidDictionary(dictionary: FeedDictionary, expectedTopic: string): boolean {
   if (dictionary.reporterId.length === 0) return false
   if (dictionary.elements.length === 0) return false
-  if (dictionary.namespaces.length === 0) return false
+  if (dictionary.imports.length === 0) return false
   if (dictionary.topicId !== expectedTopic) return false
   return true
 }

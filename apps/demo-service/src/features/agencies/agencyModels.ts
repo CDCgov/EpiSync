@@ -31,20 +31,7 @@ export const mmgCaseDictionary: FeedDictionary = {
   topicId: commonTopic,
   reporterId: 'cdc.gov',
   validFrom: new Date(), // dummy value
-  namespaces: [
-    {
-      namespace: 'cdc',
-      description: 'Elements from the state'
-    },
-    {
-      namespace: 'uscdi',
-      description: 'Element defined in the uscdi'
-    },
-    {
-      namespace: 'event',
-      description: 'Core EpiSync elements'
-    }
-  ],
+  imports: [],
   elements: requiredElements.concat([
     {
       name: 'cdcOnsetOfSymptoms',
@@ -176,87 +163,79 @@ export const caStateDictionary = {
   topicId: commonTopic,
   reporterId: 'cdph.ca.gov',
   validFrom: new Date(), // dummy value
-  namespaces: [
+  imports: [
     {
-      namespace: 'cdc',
-      description: 'Elements from the state'
+      name: 'mmg',
+      description: 'Elements from CDC MMG'
     },
-    {
-      namespace: 'uscdi',
-      description: 'Element defined in the uscdi'
-    },
-    {
-      namespace: 'event',
-      description: 'Core EpiSync elements'
-    }
   ],
   elements: mmgCaseDictionary.elements.concat([
-  {
-    name: 'uscdiPatientFirstName',
-    namespace: 'uscdi',
-    type: 'string',
-    tags: ['pii'],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'patient',
-      displayName: 'First Name'
-    }]
-  },
-  {
-    name: 'uscdiPatientLastName',
-    namespace: 'uscdi',
-    type: 'string',
-    tags: ['pii'],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'patient',
-      displayName: 'Last Name'
-    }]
-  },
-  {
-    name: 'uscdiPatientAddress',
-    namespace: 'uscdi',
-    type: 'string',
-    tags: ['pii'],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'patient',
-      displayName: 'Address'
-    }]
-  },
-  {
-    name: 'uscdiPatientCity',
-    namespace: 'uscdi',
-    type: 'string',
-    tags: ['pii'],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'patient',
-      displayName: 'City'
-    }]
-  },
-  {
-    name: 'uscdiPatientPhone',
-    namespace: 'uscdi',
-    type: 'string',
-    tags: ['pii'],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'patient',
-      displayName: 'Telephone'
-    }]
-  },
-  {
-    name: 'uscdiPatientEmail',
-    namespace: 'uscdi',
-    type: 'string',
-    tags: ['pii'],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'patient',
-      displayName: 'Email'
-    }]
-  }
+    {
+      name: 'uscdiPatientFirstName',
+      namespace: 'uscdi',
+      type: 'string',
+      tags: ['pii'],
+      descriptions: [{
+        isoCultureCode: 'en-us',
+        section: 'patient',
+        displayName: 'First Name'
+      }]
+    },
+    {
+      name: 'uscdiPatientLastName',
+      namespace: 'uscdi',
+      type: 'string',
+      tags: ['pii'],
+      descriptions: [{
+        isoCultureCode: 'en-us',
+        section: 'patient',
+        displayName: 'Last Name'
+      }]
+    },
+    {
+      name: 'uscdiPatientAddress',
+      namespace: 'uscdi',
+      type: 'string',
+      tags: ['pii'],
+      descriptions: [{
+        isoCultureCode: 'en-us',
+        section: 'patient',
+        displayName: 'Address'
+      }]
+    },
+    {
+      name: 'uscdiPatientCity',
+      namespace: 'uscdi',
+      type: 'string',
+      tags: ['pii'],
+      descriptions: [{
+        isoCultureCode: 'en-us',
+        section: 'patient',
+        displayName: 'City'
+      }]
+    },
+    {
+      name: 'uscdiPatientPhone',
+      namespace: 'uscdi',
+      type: 'string',
+      tags: ['pii'],
+      descriptions: [{
+        isoCultureCode: 'en-us',
+        section: 'patient',
+        displayName: 'Telephone'
+      }]
+    },
+    {
+      name: 'uscdiPatientEmail',
+      namespace: 'uscdi',
+      type: 'string',
+      tags: ['pii'],
+      descriptions: [{
+        isoCultureCode: 'en-us',
+        section: 'patient',
+        displayName: 'Email'
+      }]
+    }
   ])
 }
 
@@ -287,19 +266,11 @@ export const azStateDictionary = {
   topicId: commonTopic,
   reporterId: 'azphs.gov',
   validFrom: new Date(), // dummy value
-  namespaces: [
+  imports: [
     {
-      namespace: 'cdc',
-      description: 'Elements from the state'
+      name: 'mmg',
+      description: 'Elements from CDC MMG'
     },
-    {
-      namespace: 'uscdi',
-      description: 'Element defined in the uscdi'
-    },
-    {
-      namespace: 'event',
-      description: 'Core EpiSync elements'
-    }
   ],
   elements: mmgCaseDictionary.elements.concat([
     {

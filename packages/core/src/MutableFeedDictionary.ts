@@ -1,23 +1,23 @@
 import { FeedElement } from './FeedElement'
-import { FeedDictionary, FeedNamespace } from './FeedDictionary'
+import { FeedDictionary, FeedImports } from './FeedDictionary'
 
 export class MutableFeedDictionary implements FeedDictionary {
   topicId: string
   reporterId: string
   validFrom: Date
-  namespaces: FeedNamespace[]
+  imports: FeedImports[]
   elements: FeedElement[]
 
-  constructor (initDictionary: FeedDictionary) {
+  constructor(initDictionary: FeedDictionary) {
     this.topicId = initDictionary.topicId
     this.reporterId = initDictionary.reporterId
     this.validFrom = initDictionary.validFrom
-    this.namespaces = initDictionary.namespaces
+    this.imports = initDictionary.imports
     this.elements = initDictionary.elements.concat([])
     this.sortElements()
   }
 
-  addElement (element: FeedElement): boolean {
+  addElement(element: FeedElement): boolean {
     const index = this.elements.findIndex(e => e.name === element.name)
     if (index !== -1) { return false }
 
@@ -27,7 +27,7 @@ export class MutableFeedDictionary implements FeedDictionary {
     return true
   }
 
-  deleteElement (name: string): boolean {
+  deleteElement(name: string): boolean {
     const index = this.elements.findIndex(e => e.name === name)
     if (index === -1) { return false }
 
@@ -39,27 +39,27 @@ export class MutableFeedDictionary implements FeedDictionary {
     return true
   }
 
-  addNamespace (adding: FeedNamespace): boolean {
-    const index = this.namespaces.findIndex(n => n.namespace === adding.namespace)
+  addNamespace(adding: FeedImports): boolean {
+    const index = this.imports.findIndex(n => n.name === adding.name)
     if (index !== -1) { return false }
 
     this.validFrom = new Date()
-    this.namespaces.push(adding)
+    this.imports.push(adding)
     return true
   }
 
-  deleteNamespace (namespace: string): boolean {
-    const index = this.namespaces.findIndex(n => n.namespace === namespace)
+  deleteNamespace(namespace: string): boolean {
+    const index = this.imports.findIndex(n => n.name === namespace)
     if (index === -1) { return false }
 
     this.validFrom = new Date()
-    const copy = [...this.namespaces]
+    const copy = [...this.imports]
     copy.splice(index, 1)
-    this.namespaces = copy
+    this.imports = copy
     return true
   }
 
-  private sortElements (): void {
+  private sortElements(): void {
     this.elements.sort((a, b) => {
       const sectionA = a.descriptions[0].section ?? 'zzz'
       const sectionB = b.descriptions[0].section ?? 'zzz'

@@ -2,7 +2,7 @@ import { max } from 'date-fns'
 import { FeedDictionary } from './FeedDictionary'
 import { MutableFeedDictionary } from './MutableFeedDictionary'
 
-export function mergeDictionaries (reporter: string, dictionaries: FeedDictionary[]): FeedDictionary {
+export function mergeDictionaries(reporter: string, dictionaries: FeedDictionary[]): FeedDictionary {
   if (dictionaries.length === 0) throw Error('expected to merge at least one dictionary')
 
   const result = new MutableFeedDictionary(dictionaries[0])
@@ -10,7 +10,7 @@ export function mergeDictionaries (reporter: string, dictionaries: FeedDictionar
     for (const element of otherDictionary.elements) {
       result.addElement(element)
     }
-    for (const namespace of otherDictionary.namespaces) {
+    for (const namespace of otherDictionary.imports) {
       result.addNamespace(namespace)
     }
   }
