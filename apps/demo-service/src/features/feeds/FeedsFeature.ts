@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { Feature } from '@/server/Feature'
-import { AppState } from '@/server/AppState'
+import { Feature } from '../../server/Feature'
+import { AppState } from '../../server/AppState'
 import feedRouter from './feedRoutes'
 
 export class FeedsFeature implements Feature {

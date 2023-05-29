@@ -24,48 +24,50 @@ imports:
   {{/if}}
 {{/each}}
 
-# Elements of the dictionary
+# Elements of the dictionary. A element of a dictionary may use the defintion in an import or
+# define the element directly.
 #
 # Each element has:
-# - name
-# - follows: (optional) If present follow the URL
-# - displayName (optional)
-# - description (optional)
-# - isMultiValued (optional)
-# - type: (optional) either 'string', 'date', 'number', or 'code'
-# - codeSet (optional)
-# - valueSet (optional)
-# - validation (optional)
+# - name: the name of the CSV column. This name is used even if the element is defined in an import. Must unique in the data dictionary.
+# - useImport: import_name#element_name pair that refers to an imported element or blank/null
+#
+# The following values are only used if useImport is blank.
+#
+# - section: A logical grouping of data elements
+# - tags: A list of tags about the element.
+# - isRepeated: boolean to specify if the element can repeat. true or false
+# - isRequired: boolean to specify if the element is required. true or false
+# - description: English language descriptions of the data element.
+# - type: either 'string', 'date', 'datetime', 'integer', 'decimal', or 'code'
+#
+# If 'string' type:
+# - maxLength
+#
+# If 'code' type, describe the value set being used
+# - valueSet:
+#   - system: PHINVADS, ...
+#   - name:
+#   - url:
 #
 elements:
 {{#each elements}}
 - name: {{ this.name }}
-  type: {{ this.type }}
-  {{#if this.isRepeated}}
-  isRepeated: {{this.isRepeated}}
-  {{/if}}
-  {{#if this.codeSet}}
-  codeSet: {{this.codeSet}}
-  {{/if}}
-  {{#if this.validation}}
-  validation: {{this.validation}}
-  {{/if}}
+  useImport: {{ this.useImport }}
+  section: {{this.section}}
   tags:
   {{#each this.tags }}
   - {{ this }}
   {{/each}}
-  descriptions:
-  {{#each this.descriptions }}
-  - isoCultureCode: {{ this.isoCultureCode }}
-    displayName: {{ this.displayName }}
-    {{#if this.section }}
-    section: {{ this.section }}
-    {{/if}}
-    {{#if this.details }}
-    details: {{ this.details }}
-    {{/if}}
-    {{#if this.authorComments }}
-    authorComments: {{ this.authorComments }}
-    {{/if}}
-  {{/each}}
+  isRepeated: {{this.isRepeated}}
+  description: {{ this.description }}
+  type: {{ this.type }}
+  {{#if this.maxLength}}
+  maxLength: {{this.maxLength}}
+  {{/if}}
+  {{#if this.valueSet}}
+  valueSet:
+    system: {{ this.valueSet.system }}
+    name: {{ this.valueSet.name }}
+    url: {{ this.valueSet.url }}
+  {{/if}}
 {{/each}}

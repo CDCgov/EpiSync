@@ -8,11 +8,14 @@ import { initialCASummary, initialAZSummary, initialCDCSummary, caStateDictionar
 import { AppState } from '../../server/AppState'
 import { insertFakeCases } from './insertFakeCases'
 import { publishFeed } from 'episync-core'
+import { getLogger } from '../../server/loggers'
+
+const logger = getLogger('AGENCIES_FEATURE')
 
 export interface AgencyModel {
   name: string
   timeSeries: MutableTimeSeries<MongoTimeSeriesEvent>
-  subcribers: FeedSubscriber[]
+  subscribers: FeedSubscriber[]
 }
 
 export class AgenciesFeature implements Feature {

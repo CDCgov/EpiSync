@@ -11,7 +11,7 @@ export function mergeDictionaries(reporter: string, dictionaries: FeedDictionary
       result.addElement(element)
     }
     for (const namespace of otherDictionary.imports) {
-      result.addNamespace(namespace)
+      result.addImport(namespace)
     }
   }
   result.reporterId = reporter

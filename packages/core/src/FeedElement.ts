@@ -1,22 +1,22 @@
 /**
- * A FeedElement describes the data element for machines and humans
+ * A FeedElement describes the data element.
  */
 export interface FeedElement {
   /**
-   * The name of the element. Must be globally unique. Corresponds to the name of the CSV column
+   * The name of the CSV column. This name is used even if the element is defined in an import.
+   * Must unique in the data dictionary.
    */
   name: string
 
   /**
-   * The namespace used to define the element. The element name must start with the namespace.
-   * Namespaces are handed out globally at EpiSync centeral.
+   * A import_name#element_name pair that refers to an imported element or blank/null
    */
-  namespace: string
+  useImport?: string
 
   /**
-   * The type of the element.
+   * A logical grouping of data elements:
    */
-  type: FeedElementType
+  section: string
 
   /**
    * Tags are lists of attributes
@@ -26,54 +26,51 @@ export interface FeedElement {
   /**
    * Elements may be repeated or multi-valued. Patient email is an example of something that often has multiple values.
    */
-  repeated?: boolean
+  isRepeated: boolean
+
+  /**
+   * boolean to specify if the element is required. true or false
+   */
+  isRequired: boolean
 
   /**
    * Human readable descriptions. At least one description is required.
    */
-  descriptions: [FeedElementDescription, ...FeedElementDescription[]]
+  description: string
 
   /**
-   * If type is 'code', a description of the code set used.
+   * The type of the element.
    */
-  codeSet?: string
+  type: FeedElementType
 
   /**
-   * Validation language to be defined.
+   * If type is 'code', a description of the value set used.
    */
-  validation?: string
+  valueSet?: FeedElementValueSet
 }
 
-export interface FeedElementDescription {
+/**
+ * Describes the valueset being used
+ */
+export interface FeedElementValueSet {
   /**
-   * ISO culture code. 'en' is a good default or 'en-us' are good defaults.
+   * The terminology system being used. PHINVADS is expected
    */
-  isoCultureCode: string
+  system: string
 
   /**
-   * A human readable name for the element. Example "Email Address"
+   * The name of the value set
    */
-  displayName: string
+  name: string
 
   /**
-   * A natural grouping of elements together. Example, "Patient".
+   * URL to the value set
    */
-  section?: string
-
-  /**
-   * Detail description of the element and what is expected. Like display name, this should be used to communicate to people filling out a form.
-   */
-  details?: string
-
-  /**
-   * In addition to details about the element from the creators of the element.
-   * May contain information about the purpose and value of the element
-   */
-  authorComments?: string
+  url: string
 }
 
-export type FeedElementType = 'string' | 'number' | 'date' | 'code'
-export type FeedElementTag = 'pii'
+export type FeedElementType = 'string' | 'integer' | 'decimal' | 'date' | 'datetime' | 'code'
+export type FeedElementTag = 'pii' | 'eventId' | 'eventAt' | 'eventUpdatedAt' | 'eventTopicId' | 'eventReporterId'
 
 export function filterElements (elements: FeedElement[], excludeTag: FeedElementTag): FeedElement[] {
   return elements.filter((elem) => !elem.tags.includes(excludeTag))

@@ -1,7 +1,64 @@
-import { FeedDictionary, FeedSummary, requiredElements } from 'episync-core'
+import { FeedDictionary, FeedSummary, FeedElement, requiredElements } from 'episync-core'
 
 export const commonTopic = 'cases'
 export const commonTopicFullName = 'Demonstration cases'
+
+const commonPatientElements: FeedElement[] = [
+  {
+    name: 'uscdiPatientFirstName',
+    type: 'string',
+    tags: ['pii'],
+    section: 'subject',
+    description: 'First Name',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientLastName',
+    type: 'string',
+    tags: ['pii'],
+    section: 'subject',
+    description: 'Last Name',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientAddress',
+    type: 'string',
+    tags: ['pii'],
+    section: 'subject',
+    description: 'Address',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientCity',
+    type: 'string',
+    tags: ['pii'],
+    section: 'subject',
+    description: 'City',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientPhone',
+    type: 'string',
+    tags: ['pii'],
+    section: 'subject',
+    description: 'Telephone',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientEmail',
+    type: 'string',
+    tags: ['pii'],
+    section: 'subject',
+    description: 'Email',
+    isRequired: false,
+    isRepeated: false,
+  }
+]
 
 //
 // CDC Case Definition
@@ -23,118 +80,120 @@ export const initialCDCSummary: FeedSummary = {
   contacts: [{ email: 'fake@cdc.gov' }]
 }
 
-
 // An initial feed dictionary that is shared between all feeds.
 // will be modified by individual feeds
 //
+const mmgCaseElements: FeedElement[] = [
+  {
+    name: 'cdcOnsetOfSymptoms',
+    type: 'date',
+    tags: [],
+    section: 'case',
+    description: 'Onset of Symptoms',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'cdcHospitalized',
+    type: 'code',
+    valueSet: {
+      system: 'PHINVADS',
+      name: 'PHVS_YesNoUnknown_CDC',
+      url: ''
+    },
+    tags: [],
+    section: 'case',
+    description: 'Hospitalized',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'cdcSubjectDied',
+    type: 'code',
+    valueSet: {
+      system: 'PHINVADS',
+      name: 'PHVS_YesNoUnknown_CDC',
+      url: ''
+    },
+    tags: [],
+    section: 'case',
+    description: 'Subject Died',
+    isRequired: false,
+    isRepeated: false,
+  },
+  // person elements
+  {
+    name: 'uscdiPatientDateOfBirth',
+    type: 'date',
+    tags: [],
+    section: 'patient',
+    description: 'Date of Birth',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientRaceCategory',
+    type: 'code',
+    tags: [],
+    valueSet: {
+      system: 'PHINVADS',
+      name: 'PHVS_RaceCategory_CDC',
+      url: ''
+    },
+    section: 'subject',
+    description: 'Race',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientEthnicityGroup',
+    type: 'code',
+    tags: [],
+    valueSet: {
+      system: 'PHINVADS',
+      name: 'PHVS_EthnicityGroup_CDC',
+      url: ''
+    },
+    section: 'subject',
+    description: 'Ethnicity',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientSexAtBirth',
+    type: 'code',
+    tags: [],
+    section: 'subject',
+    description: 'Sex at Birth',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientState',
+    type: 'string',
+    tags: [],
+    section: 'subject',
+    description: 'State',
+    isRequired: false,
+    isRepeated: false,
+  },
+  {
+    name: 'uscdiPatientPostalCode',
+    type: 'string',
+    tags: [],
+    section: 'subject',
+    description: 'Postal Code',
+    isRequired: false,
+    isRepeated: false,
+  }
+]
+
 export const mmgCaseDictionary: FeedDictionary = {
   topicId: commonTopic,
   reporterId: 'cdc.gov',
   validFrom: new Date(), // dummy value
   imports: [],
-  elements: requiredElements.concat([
-    {
-      name: 'cdcOnsetOfSymptoms',
-      namespace: 'cdc',
-      type: 'date',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        displayName: 'Onset of Symptoms'
-      }]
-    },
-    {
-      name: 'cdcHospitalized',
-      namespace: 'cdc',
-      type: 'code',
-      codeSet: 'PHVS_YesNoUnknown_CDC',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        displayName: 'Hospitalized'
-      }]
-    },
-    {
-      name: 'cdcSubjectDied',
-      namespace: 'cdc',
-      type: 'code',
-      codeSet: 'PHVS_YesNoUnknown_CDC',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        displayName: 'Subject Died'
-      }]
-    },
-    // person elements
-    {
-      name: 'uscdiPatientDateOfBirth',
-      namespace: 'uscdi',
-      type: 'date',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Date of Birth'
-      }]
-    },
-    {
-      name: 'uscdiPatientRaceCategory',
-      namespace: 'uscdi',
-      type: 'code',
-      tags: [],
-      codeSet: 'PHVS_RaceCategory_CDC',
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Race'
-      }]
-    },
-    {
-      name: 'uscdiPatientEthnicityGroup',
-      namespace: 'uscdi',
-      type: 'code',
-      tags: [],
-      codeSet: 'PHVS_EthnicityGroup_CDC',
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Ethnicity'
-      }]
-    },
-    {
-      name: 'uscdiPatientSexAtBirth',
-      namespace: 'uscdi',
-      type: 'code',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Sex at Birth'
-      }]
-    },
-    {
-      name: 'uscdiPatientState',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'State'
-      }]
-    },
-    {
-      name: 'uscdiPatientPostalCode',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: [],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Postal Code'
-      }]
-    }
-  ])
+  elements: requiredElements.concat(mmgCaseElements)
 }
 
 //
@@ -169,74 +228,7 @@ export const caStateDictionary = {
       description: 'Elements from CDC MMG'
     },
   ],
-  elements: mmgCaseDictionary.elements.concat([
-    {
-      name: 'uscdiPatientFirstName',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'First Name'
-      }]
-    },
-    {
-      name: 'uscdiPatientLastName',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Last Name'
-      }]
-    },
-    {
-      name: 'uscdiPatientAddress',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Address'
-      }]
-    },
-    {
-      name: 'uscdiPatientCity',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'City'
-      }]
-    },
-    {
-      name: 'uscdiPatientPhone',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Telephone'
-      }]
-    },
-    {
-      name: 'uscdiPatientEmail',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Email'
-      }]
-    }
-  ])
+  elements: mmgCaseDictionary.elements.concat(commonPatientElements)
 }
 
 //
@@ -272,74 +264,7 @@ export const azStateDictionary = {
       description: 'Elements from CDC MMG'
     },
   ],
-  elements: mmgCaseDictionary.elements.concat([
-    {
-      name: 'uscdiPatientFirstName',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'First Name'
-      }]
-    },
-    {
-      name: 'uscdiPatientLastName',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Last Name'
-      }]
-    },
-    {
-      name: 'uscdiPatientAddress',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Address'
-      }]
-    },
-    {
-      name: 'uscdiPatientCity',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'City'
-      }]
-    },
-    {
-      name: 'uscdiPatientPhone',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Telephone'
-      }]
-    },
-    {
-      name: 'uscdiPatientEmail',
-      namespace: 'uscdi',
-      type: 'string',
-      tags: ['pii'],
-      descriptions: [{
-        isoCultureCode: 'en-us',
-        section: 'patient',
-        displayName: 'Email'
-      }]
-    }
-  ])
+  elements: mmgCaseDictionary.elements.concat(commonPatientElements)
 }
 
 export const variableDictionaryElementNames = [

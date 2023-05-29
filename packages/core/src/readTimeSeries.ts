@@ -83,7 +83,9 @@ class TimeSeriesReader<T> {
     const values = row.map((column, index) => {
       switch (elements[index].type) {
         case 'date': return parseISO(column)
-        case 'number': return Number.parseFloat(column)
+        case 'datetime': return parseISO(column)
+        case 'integer': return Number.parseInt(column)
+        case 'decimal': return Number.parseFloat(column)
         default: return column
       }
     })

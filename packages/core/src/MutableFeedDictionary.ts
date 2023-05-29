@@ -39,7 +39,7 @@ export class MutableFeedDictionary implements FeedDictionary {
     return true
   }
 
-  addNamespace(adding: FeedImports): boolean {
+  addImport(adding: FeedImports): boolean {
     const index = this.imports.findIndex(n => n.name === adding.name)
     if (index !== -1) { return false }
 
@@ -48,8 +48,8 @@ export class MutableFeedDictionary implements FeedDictionary {
     return true
   }
 
-  deleteNamespace(namespace: string): boolean {
-    const index = this.imports.findIndex(n => n.name === namespace)
+  removeImport(importName: string): boolean {
+    const index = this.imports.findIndex(n => n.name === importName)
     if (index === -1) { return false }
 
     this.validFrom = new Date()
@@ -59,10 +59,14 @@ export class MutableFeedDictionary implements FeedDictionary {
     return true
   }
 
-  private sortElements(): void {
+  findElement(name: string): FeedElement | undefined {
+    return this.elements.find(e => e.name === name)
+  }
+
+  sortElements(): void {
     this.elements.sort((a, b) => {
-      const sectionA = a.descriptions[0].section ?? 'zzz'
-      const sectionB = b.descriptions[0].section ?? 'zzz'
+      const sectionA = a.section ?? 'zzz'
+      const sectionB = b.section ?? 'zzz'
       if (sectionA === sectionB) {
         if (a.name < b.name) return -1
         if (a.name > b.name) return 1

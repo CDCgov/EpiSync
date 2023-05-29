@@ -6,6 +6,7 @@ import { FeedSubscriber, FeedSubscriberModel } from './FeedSubscriber'
 import { publishFeed, FeedStorage } from 'episync-core'
 import { deduplicateCases } from './deduplicateCases'
 import { insertFakeCases } from './insertFakeCases'
+import { AgencyModel } from './AgenciesFeature'
 
 const router = express.Router()
 const logger = getLogger('AGENCIES_ROUTE')
@@ -19,7 +20,7 @@ function getAgencyTimeSeries (req: Request): MongoTimeSeries | undefined {
 
 function getAgencySubscriber (req: Request): FeedSubscriber | undefined {
   const agencyName = req.params.agency
-  const agency = req.state.agenciesFeature.agencies[agencyName]
+  const agency: AgencyModel = req.state.agenciesFeature.agencies[agencyName]
   if (agency === undefined) return
   const subscriberName = req.params.subscriber
   return agency.subscribers.find(s => s.model.name === subscriberName)
@@ -123,6 +124,7 @@ router.get('/:agency/dictionary', asyncHandler(async (req, res, _next) => {
     return
   }
 
+  timeSeries.dictionary.sortElements()
   res.send(timeSeries.dictionary)
 }))
 
@@ -138,10 +140,11 @@ router.put('/:agency/dictionary/:elementName', (req, res, _next) => {
   logger.info(`put dictionary element ${elementName} for ${req.params.agency}`)
   logger.debug(`put element ${JSON.stringify(req.body)}`)
   const created = timeSeries.addFeedElement(req.body)
+  const newElement = timeSeries.dictionary.findElement(elementName)
   if (created) {
-    res.status(201).send(timeSeries.dictionary.elements.find(e => e.name === elementName))
+    res.status(201).send(newElement)
   } else {
-    res.status(200).send(timeSeries.dictionary.elements.find(e => e.name === elementName))
+    res.status(200).send(newElement)
   }
 })
 

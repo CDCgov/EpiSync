@@ -3,57 +3,47 @@ import { FeedElement } from './FeedElement'
 export const requiredElements: FeedElement[] = [
   {
     name: 'eventId',
-    namespace: 'event',
     type: 'string',
-    tags: [],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'event',
-      displayName: 'Event Id'
-    }]
+    isRepeated: false,
+    isRequired: true,
+    section: 'event',
+    description: 'Event Id',
+    tags: ['eventId'],
   },
   {
     name: 'eventAt',
-    namespace: 'event',
     type: 'date',
-    tags: [],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'event',
-      displayName: 'Event Time'
-    }]
-  },
-  {
-    name: 'eventReporterId',
-    namespace: 'event',
-    type: 'string',
-    tags: [],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'event',
-      displayName: 'Event Reporter'
-    }]
-  },
-  {
-    name: 'eventTopicId',
-    namespace: 'event',
-    type: 'string',
-    tags: [],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'event',
-      displayName: 'Event Topic'
-    }]
+    isRepeated: false,
+    isRequired: true,
+    section: 'event',
+    description: 'Event At',
+    tags: ['eventAt'],
   },
   {
     name: 'eventUpdatedAt',
-    namespace: 'event',
     type: 'date',
-    tags: [],
-    descriptions: [{
-      isoCultureCode: 'en-us',
-      section: 'event',
-      displayName: 'Event Updated Time'
-    }]
+    isRepeated: false,
+    isRequired: true,
+    section: 'event',
+    description: 'Updated At',
+    tags: ['eventUpdatedAt'],
+  },
+  {
+    name: 'eventReporterId',
+    type: 'string',
+    isRepeated: false,
+    isRequired: true,
+    section: 'event',
+    description: 'Reporter Id',
+    tags: ['eventReporterId'],
+  },
+  {
+    name: 'eventTopicId',
+    type: 'string',
+    isRepeated: false,
+    isRequired: true,
+    section: 'event',
+    description: 'Topic Id',
+    tags: ['eventTopicId'],
   }
 ]

@@ -27,7 +27,10 @@ export async function publishDictionary(
   }
 }
 
-function formTemplateContext(dictionary: FeedDictionary, publishOptions: PublishFeedOptions): any {
+function formTemplateContext(
+  dictionary: FeedDictionary,
+  publishOptions: PublishFeedOptions
+): any {
   const publishedElements = publishOptions.excludePII ?? false
     ? filterElements(dictionary.elements, 'pii')
     : dictionary.elements

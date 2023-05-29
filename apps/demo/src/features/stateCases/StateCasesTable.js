@@ -20,9 +20,9 @@ function makeColumns(dictionary) {
   return dictionary.elements.map((element) => {
     return {
       id: element.name,
-      label: element.descriptions[0].displayName,
+      label: element.description,
       minWidth: customWidths[element.name] ?? 120,
-      dateFormat: element.type === 'date',
+      dateFormat: element.type === 'date' || element.type === 'datetime'
     }
   })
 }
