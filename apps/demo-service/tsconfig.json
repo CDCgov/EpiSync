@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
+  "extends": "@tsconfig/node16/tsconfig.json",
   "include": [
     "."
   ],
@@ -18,15 +18,8 @@
     "typeRoots": [
       "./src/server/types",
     ],
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node16",
-    "forceConsistentCasingInFileNames": true,
-    "target": "ES2020",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "inlineSourceMap": true,
-    "inlineSources": true
+    "sourceMap": true,
+    "noEmit": false,
+    "outDir": "build"
   }
 }

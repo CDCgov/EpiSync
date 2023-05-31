@@ -44,7 +44,7 @@ export class App {
   features: Feature[]
 
   constructor () {
-    this.port = this.normalizePort(process.env.PORT ?? '3000')
+    this.port = this.normalizePort(process.env.PORT ?? '4001')
     this.feedsFeature = new FeedsFeature()
     this.agenciesFeature = new AgenciesFeature()
     this.systemFeature = new SystemFeature([this.feedsFeature, this.agenciesFeature])
@@ -56,7 +56,7 @@ export class App {
 
   public listen (): void {
     this.server.listen(this.port, () => {
-      logger.info(`🚀 Server launch ~ port ${this.port} ~ ${process.env.NODE_ENV ?? 'no'} environment`)
+      logger.info(`🚀 Server launch ~ port ${this.port} with ${process.env.NODE_ENV ?? 'no'} environment`)
     })
     this.server.on('error', this.onError)
   }
@@ -109,7 +109,7 @@ export class App {
     logger.info('Clearing stores...')
     const state = this.formAppState()
     await state.feedStorage.clearAll()
-    // Collections may be in memory or in persisted db 
+    // Collections may be in memory or in persisted db
     const collectionNames = this.features.flatMap(feature => feature.collectionsUsed)
     await dropCollections(state.db, collectionNames)
   }
@@ -173,16 +173,14 @@ export class App {
       throw new Error(error.code)
     }
 
-    const bind = typeof this.port === 'string' ? 'Pipe ' + this.port : 'Port ' + this.port.toString()
-
     // handle specific listen errors with friendly messages
     switch (error.code) {
       case 'EACCES':
-        console.error(bind + ' requires elevated privileges')
+        console.error(`Requires elevated privileges`)
         process.exit(1)
         break
       case 'EADDRINUSE':
-        console.error(bind + ' is already in use')
+        console.error(`Is already in use`)
         process.exit(1)
         break
       default:

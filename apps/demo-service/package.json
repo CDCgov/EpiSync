@@ -6,9 +6,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && export NODE_ENV=dev && nodemon --exec ts-node ./src/index.ts",
-    "debug": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception --inspect=5555' && export NODE_ENV=dev && ts-node --files --transpile-only ./src/index.ts",
-    "build": "sh etc/build.sh",
+    "dev": "export NODE_ENV=dev && ts-node src/index.ts",
+    "demo": "pnpm build && export NODE_ENV=dev && export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && node build/index.js",
+    "build": "tsc",
     "test": "jest",
     "test-watch": "export NODE_ENV=test && ts-jest --watchAll"
   },
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.3.1",
-    "@tsconfig/recommended": "^1.0.2",
+    "@tsconfig/node16": "^1.0.3",
     "@types/cookie-parser": "^1.4.3",
     "@types/debug": "^4.1.7",
     "@types/dotenv-flow": "^3.2.0",
